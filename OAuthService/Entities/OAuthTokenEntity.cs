@@ -1,4 +1,4 @@
-namespace OAuthService
+namespace OAuthService.Entities
 {
     public sealed class OAuthTokenEntity
     {

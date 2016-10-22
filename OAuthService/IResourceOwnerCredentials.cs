@@ -1,4 +1,6 @@
 using System;
+using OAuthService.Entities;
+
 namespace OAuthService
 {
     ///<summary>

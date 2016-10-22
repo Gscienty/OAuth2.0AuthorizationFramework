@@ -13,9 +13,9 @@ namespace OAuthService.Exceptions
         #endregion
 
         #region Construction
-        public OAuthServiceAbstractException() { }
+        public AbstractOAuthServiceException() { }
 
-        public OAuthServiceAbstractException(string message) : base(message) { }
+        public AbstractOAuthServiceException(string message) : base(message) { }
         #endregion
     }
 }

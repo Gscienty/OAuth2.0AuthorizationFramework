@@ -3,16 +3,18 @@ using OAuthService.Entities;
 namespace OAuthService
 {
     ///<summary>
-    ///客户端凭证认证方式
+    ///刷新令牌
     ///</summary>
-    public interface IClientCredentials
+    public interface IRefreshing
     {
         ///<summary>
-        ///授权请求
+        ///获取新的令牌
+        ///<param name="refreshToken">刷新令牌</param>
         ///<param name="scope">声明</param>
-        ///<returns>令牌</returns>
+        ///<returns>返回授权</returns>
         ///</summary>
         OAuthTokenEntity AuthorizationRequest(
+            string refreshToken,
             string scope
         );
     }
