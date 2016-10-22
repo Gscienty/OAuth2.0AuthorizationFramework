@@ -1,6 +1,9 @@
 using System.Collections.Generic;
 namespace OAuthService
 {
+    ///<summary>
+    ///简明模式
+    ///</summary>
     public interface IImplicit
     {
         ///<summary>
@@ -9,7 +12,7 @@ namespace OAuthService
         ///<param name="state">声明</param>
         ///<param name="scope">授权范围</param>
         ///</summary>
-        Token AuthorizationRequest(
+        OAuthTokenEntity AuthorizationRequest(
             string clientID,
             string state,
             IEnumerable<string> scope

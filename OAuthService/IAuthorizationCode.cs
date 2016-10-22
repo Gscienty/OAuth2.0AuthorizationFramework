@@ -26,7 +26,7 @@ namespace OAuthService
         ///<param name="clientID">客户端凭证</param>
         ///<param name="code">授权码</param>
         ///</summary>
-        Token AccessTokenRequest(
+        OAuthTokenEntity AccessTokenRequest(
             string clientID,
             string code
         );

@@ -1,6 +1,6 @@
 namespace OAuthService
 {
-    public sealed class Token
+    public sealed class OAuthTokenEntity
     {
         public string AccessToken { get; set; }
         public string TokenType { get; set; }

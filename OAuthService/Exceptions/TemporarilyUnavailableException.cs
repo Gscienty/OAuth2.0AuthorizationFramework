@@ -1,6 +1,6 @@
 namespace OAuthService.Exceptions
 {
-    public sealed class TemporarilyUnavailableException : OAuthServiceAbstractException
+    public sealed class TemporarilyUnavailableException : AbstractOAuthServiceException
     {
         #region Property
         public override string ErrorType { get; } = "temporarily_unavailable";

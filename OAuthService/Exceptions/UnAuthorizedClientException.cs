@@ -1,6 +1,6 @@
 namespace OAuthService.Exceptions
 {
-    public sealed class UnAuthorizedClientException : OAuthServiceAbstractException
+    public sealed class UnAuthorizedClientException : AbstractOAuthServiceException
     {
         #region Property
         public override string ErrorType { get; } = "unauthorized_client";

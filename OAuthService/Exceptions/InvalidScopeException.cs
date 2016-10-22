@@ -1,6 +1,6 @@
 namespace OAuthService.Exceptions
 {
-    public sealed class InvalidScopeException : OAuthServiceAbstractException
+    public sealed class InvalidScopeException : AbstractOAuthServiceException
     {
         #region Property
         public override string ErrorType { get; } = "invalid_scope";

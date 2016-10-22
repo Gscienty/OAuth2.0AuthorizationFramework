@@ -1,6 +1,6 @@
 namespace OAuthService.Exceptions
 {
-    public sealed class ServerErrorException : OAuthServiceAbstractException
+    public sealed class ServerErrorException : AbstractOAuthServiceException
     {
         #region Property
         public override string ErrorType { get; } = "server_error";

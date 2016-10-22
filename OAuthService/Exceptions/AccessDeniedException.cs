@@ -1,6 +1,6 @@
 namespace OAuthService.Exceptions
 {
-    public sealed class AccessDeniedException : OAuthServiceAbstractException
+    public sealed class AccessDeniedException : AbstractOAuthServiceException
     {
         #region Property
         public override string ErrorType { get; } = "access_denied";

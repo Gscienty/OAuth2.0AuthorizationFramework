@@ -2,7 +2,7 @@ using System;
 
 namespace OAuthService.Exceptions
 {
-    public abstract class OAuthServiceAbstractException : Exception
+    public abstract class AbstractOAuthServiceException : Exception
     {
         #region Property
         public abstract string ErrorType { get; }

@@ -1,6 +1,6 @@
 namespace OAuthService.Exceptions
 {
-    public sealed class UnsupportedResponseTypeException : OAuthServiceAbstractException
+    public sealed class UnsupportedResponseTypeException : AbstractOAuthServiceException
     {
         #region Property
         public override string ErrorType { get; } = "unsupported_response_type";
