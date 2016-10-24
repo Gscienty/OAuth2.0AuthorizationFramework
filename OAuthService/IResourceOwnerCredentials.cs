@@ -14,8 +14,8 @@ namespace OAuthService
         ///<param name="scope">声明</param>
         ///<returns>令牌</returns>
         ///</summary>
-        OAuthTokenEntity AuthorizationRequest<T>(
-            Func<T, bool> authorizationCredential,
+        OAuthTokenEntity AuthorizationRequest(
+            Func<bool> authorizationCredential,
             string scope
         );
     }
