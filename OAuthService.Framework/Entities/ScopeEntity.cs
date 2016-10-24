@@ -5,10 +5,10 @@ namespace OAuthService.Framework.Entities
     [BsonDiscriminatorAttribute("scope")]
     internal sealed class ScopeEntity
     {
-        [BsonElementAttribute("name")]
+        [BsonElementAttribute("scope_name")]
         internal string ScopeName { get; set; }
 
-        [BsonElementAttribute("lock")]
+        [BsonElementAttribute("scope_lock")]
         internal bool IsLock{ get; set; }
     }
 }

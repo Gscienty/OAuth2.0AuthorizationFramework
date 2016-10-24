@@ -1,3 +1,6 @@
+using OAuthService.Framework.Entities;
+using MongoDB.Driver;
+
 namespace OAuthService.Framework.DataProvider
 {
     internal class ClientInformation : AbstractDataProvider
@@ -14,7 +17,13 @@ namespace OAuthService.Framework.DataProvider
         #endregion
 
         #region Method
-        
+        internal ClientEntity GetClientMetadata(string clientID)
+        {
+            return this.GetCollection<ClientEntity>().FindSync(
+                        Builders<ClientEntity>.Filter
+                            .Eq(e => e.ClientID, clientID)
+                    ).SingleOrDefault();
+        }
         #endregion
     }
 }

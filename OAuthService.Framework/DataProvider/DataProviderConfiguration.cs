@@ -1,6 +1,3 @@
-using MongoDB.Bson.Serialization;
-using OAuthService.Framework.Entities;
-
 namespace OAuthService.Framework.DataProvider
 {
     public sealed class DataProviderConfiguration

@@ -1,7 +1,7 @@
 using MongoDB.Driver;
 namespace OAuthService.Framework.DataProvider
 {
-    public abstract class AbstractDataProvider
+    internal abstract class AbstractDataProvider
     {
         #region Field
         private IMongoDatabase _database;
