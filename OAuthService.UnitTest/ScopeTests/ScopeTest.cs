@@ -14,12 +14,16 @@ namespace OAuthService.Tests.ScopeTests
             ScopeDataProvider provider = new ScopeDataProvider();
             List<string> scopes = new List<string>();
             scopes.Add("test");
-            IEnumerable<string> legcalScopes = provider.GetScopes(scopes);
             
-            foreach(string legcalScope in legcalScopes)
+            try
             {
-                Assert.True(legcalScope == "Test");
+                IEnumerable<string> legcalScopes = provider.GetScopes(scopes);
             }
+            catch(OAuthService.Framework.Exceptions.AbstractOAuthServiceException ex)
+            {
+                Assert.True(ex is OAuthService.Framework.Exceptions.InvalidScopeException);
+            }
+            
         }
     }
 }
