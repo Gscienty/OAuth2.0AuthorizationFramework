@@ -16,23 +16,11 @@ namespace OAuthService.Framework.DataProvider
         {
             this.ConnectionString = connectionString;
             this.DatabaseName = databaseName;
-
-            this.RegisterEntityMap();
         }
 
         public static void Initialize(string connectionString, string databaseName)
         {
             DataProviderConfiguration.Instance = new DataProviderConfiguration(connectionString, databaseName);
-
-        }
-        #endregion
-
-        #region Private Method
-        private void RegisterEntityMap()
-        {
-            BsonClassMap.RegisterClassMap<ScopeEntity>(classMap => {
-                classMap.MapMember(entity => entity.ScopeName);
-            });
         }
         #endregion
     }

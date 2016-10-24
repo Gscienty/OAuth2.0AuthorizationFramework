@@ -24,7 +24,12 @@ namespace OAuthService.Framework.DataProvider
         {
             foreach(string scope in scopes)
             {
-                if(this.GetCollection<ScopeEntity>().CountAsync(Builders<ScopeEntity>.Filter.Eq(entity => entity.ScopeName, scope)).Result != 0){
+                ScopeEntity legalScope = this.GetCollection<ScopeEntity>().FindSync(
+                                                Builders<ScopeEntity>.Filter
+                                                    .Eq(entity => entity.ScopeName, scope)).SingleOrDefault();
+                                                    
+                if(legalScope != null && legalScope.IsLock == false)
+                {
                     yield return scope;
                 }
                 else { throw new InvalidScopeException(); }
