@@ -17,5 +17,11 @@ namespace OAuthService.Framework.Entities
 
         [BsonElementAttribute("limit_scopes")]
         public SortedSet<string> Scopes { get; set; }
+
+        [BsonElementAttribute("enable")]
+        public bool IsEnable { get; set; }
+
+        [BsonElementAttribute("author")]
+        public string Author { get; set; }
     }
 }
