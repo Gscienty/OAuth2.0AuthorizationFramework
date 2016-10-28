@@ -13,13 +13,13 @@ namespace OAuthService.Framework
         ///授权请求
         ///<param name="clientID">客户端凭证</param>
         ///<param name="state">声明</param>
-        ///<param name="scope">授权范围</param>
+        ///<param name="scopes">授权范围</param>
         ///<returns>返回授权码及声明</returns>
         ///</summary>
-        Tuple<String, String> AuthorizationRequest(
-            String clientID,
-            String state,
-            IEnumerable<String> scope
+        string AuthorizationRequest(
+            string clientID,
+            string state,
+            IEnumerable<string> scopes
         );
 
         ///<summary>

@@ -8,14 +8,17 @@ namespace OAuthService.Framework.DataProvider
     internal class ScopeDataProvider : AbstractDataProvider
     {
         #region Property
+        internal static ScopeDataProvider Instance { get; private set; }
         protected override string CollectionName { get; } = "ScopeCollection";
         #endregion
 
         #region Construction
-        public ScopeDataProvider() : base (
+        private ScopeDataProvider() : base (
             DataProviderConfiguration.Instance.ConnectionString, 
             DataProviderConfiguration.Instance.DatabaseName
         ) { }
+
+        internal static void Initialize() { Instance = new ScopeDataProvider(); }
         #endregion
 
         #region Method

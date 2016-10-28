@@ -4,7 +4,7 @@ using System.Security.Cryptography;
 
 namespace OAuthService.Framework.Utilities
 {
-    public static class RandomGenerator
+    internal static class RandomGenerator
     {
         private static char[] CharsMap = { 
             ' ', '!', '"', '#', '$', '%', '&', '\'', '(', ')', '*', '+', ',', '-', '.', '/', 
@@ -19,7 +19,7 @@ namespace OAuthService.Framework.Utilities
             return buff;
         }
 
-        public static string GeneratorRandomVSCode(int length)
+        internal static string GeneratorRandomVSCode(int length)
         {
             byte[] buff = GeneratorRandomBuffer(length);
             StringBuilder builder = new StringBuilder();
@@ -27,7 +27,7 @@ namespace OAuthService.Framework.Utilities
             return builder.ToString();
         }
 
-        public static string GeneratorRandomNQCode(int length)
+        internal static string GeneratorRandomNQCode(int length)
         {
             byte[] buff = GeneratorRandomBuffer(length);
             StringBuilder builder = new StringBuilder();
@@ -36,7 +36,7 @@ namespace OAuthService.Framework.Utilities
             return builder.ToString();
         }
 
-        public static string GeneratorRandomNQSCode(int length)
+        internal static string GeneratorRandomNQSCode(int length)
         {
             byte[] buff = GeneratorRandomBuffer(length);
             StringBuilder builder = new StringBuilder();

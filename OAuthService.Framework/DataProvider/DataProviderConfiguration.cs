@@ -18,6 +18,9 @@ namespace OAuthService.Framework.DataProvider
         public static void Initialize(string connectionString, string databaseName)
         {
             DataProviderConfiguration.Instance = new DataProviderConfiguration(connectionString, databaseName);
+
+            ClientInformationDataProvider.Initialize();
+            ScopeDataProvider.Initialize();
         }
         #endregion
     }
