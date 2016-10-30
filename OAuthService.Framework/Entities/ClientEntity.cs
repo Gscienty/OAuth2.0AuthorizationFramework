@@ -13,7 +13,7 @@ namespace OAuthService.Framework.Entities
         public string ClientName { get; set; }
 
         [BsonElementAttribute("lifecycle")]
-        public string ExpiresIn { get; set; }
+        public int ExpiresIn { get; set; }
 
         [BsonElementAttribute("limit_scopes")]
         public SortedSet<string> Scopes { get; set; }

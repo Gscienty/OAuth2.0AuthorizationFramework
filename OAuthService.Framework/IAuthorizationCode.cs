@@ -39,6 +39,6 @@ namespace OAuthService.Framework
         ///<summary>
         ///获取Access Token
         ///</summary>
-        Tuple<OAuthErrorType, OAuthAccessToken> GetAccessToken(string clientID, string code); 
+        Tuple<OAuthErrorType, OAuthTokenEntity> GetToken(string clientID, string code); 
     }
 }

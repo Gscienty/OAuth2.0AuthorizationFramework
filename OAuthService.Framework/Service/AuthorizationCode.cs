@@ -52,10 +52,27 @@ namespace OAuthService.Framework.Service
             return Tuple.Create(OAuthErrorType.NoError, entity.Code);
         }
 
-        public Tuple<OAuthErrorType, OAuthAccessToken> GetAccessToken(string clientID, string code)
+        public Tuple<OAuthErrorType, OAuthTokenEntity> GetToken(string clientID, string code)
         {
             OAuthCodeEntity codeEntity = AccessCodeDataProvider.Instance.Get(code, clientID);
-            if(codeEntity == null) { return Tuple.Create(OAuthErrorType.UnAuthorizedClient, new OAuthAccessToken()); }
+            if(codeEntity == null) { return Tuple.Create(OAuthErrorType.UnAuthorizedClient, new OAuthTokenEntity()); }
+            ClientEntity clientEntity = ClientInformationDataProvider.Instance.GetClientMetadata(clientID);
+            OAuthTokenEntity accessToken = new OAuthTokenEntity()
+            {
+                AccessToken = RandomGenerator.GeneratorRandomNQCode(32),
+                TokenType = "authorization_code",
+                ExpiresIn = clientEntity.ExpiresIn,
+                RefreshToken = RandomGenerator.GeneratorRandomNQCode(32),
+                Scopes = codeEntity.Scopes,
+                StartTime = ConvertTimespan.Get(DateTime.Now)
+            };
+
+            TokenDataProvider.Instance.Insert(accessToken);
+
+            return Tuple.Create(OAuthErrorType.NoError, accessToken);
         }
+
+        
+
     }
 }
