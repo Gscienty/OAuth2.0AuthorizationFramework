@@ -43,7 +43,7 @@ namespace OAuthService.Framework.Service
             {
                 Code = RandomGenerator.GeneratorRandomNQCode(32),
                 ClientID = clientID,
-                TimeoutTimestamp = (Int64)(DateTime.Now - new DateTime(1970, 1, 1, 0, 0, 0, 0).ToLocalTime()).Add(new TimeSpan(0, 10, 0)).TotalSeconds,
+                TimeoutTimestamp = ConvertTimespan.Get(DateTime.Now.AddMinutes(10)),
                 Scopes = scopes
             };
             AccessCodeDataProvider.Instance.Insert(entity);
