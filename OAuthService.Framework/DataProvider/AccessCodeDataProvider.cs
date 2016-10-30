@@ -1,5 +1,6 @@
 using System;
 using OAuthService.Framework.Entities;
+using OAuthService.Framework.Utilities;
 using MongoDB.Driver;
 
 namespace OAuthService.Framework.DataProvider
@@ -28,16 +29,10 @@ namespace OAuthService.Framework.DataProvider
 
         internal OAuthCodeEntity Get(string code)
         {
-            return this.GetCollection<OAuthCodeEntity>().FindSync(
+            return this.GetCollection<OAuthCodeEntity>().FindOneAndDelete(
                 Builders<OAuthCodeEntity>.Filter
-                .And(
-                    Builders<OAuthCodeEntity>.Filter
-                        .Eq(entity => entity.Code, code),
-                    Builders<OAuthCodeEntity>.Filter
-                        .Lt(entity => entity.TimeoutTimestamp, )
-                )
-                
-            ).FirstOrDefault();
+                    .Eq(entity => entity.Code, code)
+            );
         }
         #endregion
     }
