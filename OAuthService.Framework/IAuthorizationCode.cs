@@ -18,7 +18,6 @@ namespace OAuthService.Framework
         ///</summary>
         string AuthorizationRequest(
             string clientID,
-            string state,
             IEnumerable<string> scopes
         );
 
