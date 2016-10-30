@@ -29,10 +29,13 @@ namespace OAuthService.Framework.Service
 
         public IEnumerable<ScopeEntity> GetScopes(IEnumerable<string> scopes)
         {
-            Dictionary<string, ScopeEntity> legcalScopes = ScopeDataProvider.Instance.GetScopes();
+            IDictionary<string, ScopeEntity> legcalScopes = ScopeDataProvider.Instance.GetScopes();
             foreach(string scope in scopes)
             {
-                yield return legcalScopes[scope];
+                if(legcalScopes.ContainsKey(scope))
+                {
+                    yield return legcalScopes[scope];
+                }
             }
         }
 
