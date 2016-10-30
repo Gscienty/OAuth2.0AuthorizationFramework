@@ -21,9 +21,9 @@ namespace OAuthService.Framework.DataProvider
         #endregion
 
         #region Method
-        internal IDictionary<string, ScopeEntity> GetScopes()
+        internal Dictionary<string, ScopeEntity> GetScopes()
         {
-            ICollection<ScopeEntity> collection = this.GetCollection<ScopeEntity>().FindSync(
+            List<ScopeEntity> collection = this.GetCollection<ScopeEntity>().FindSync(
                 Builders<ScopeEntity>.Filter
                 .Eq(entity => entity.IsLock, false)
             ).ToList();

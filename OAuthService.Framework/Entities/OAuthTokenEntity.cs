@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
 namespace OAuthService.Framework.Entities
@@ -7,6 +8,9 @@ namespace OAuthService.Framework.Entities
     [BsonDiscriminatorAttribute("token")]
     public sealed class OAuthTokenEntity
     {
+        [BsonIdAttribute]
+        internal ObjectId ID { get; set; }
+
         [BsonElementAttribute("access_token")]
         public string AccessToken { get; set; }
 

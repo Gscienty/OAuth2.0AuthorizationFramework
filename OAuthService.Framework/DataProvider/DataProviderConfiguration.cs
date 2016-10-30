@@ -21,6 +21,8 @@ namespace OAuthService.Framework.DataProvider
 
             ClientInformationDataProvider.Initialize();
             ScopeDataProvider.Initialize();
+            TokenDataProvider.Initialize();
+            AccessCodeDataProvider.Initialize();
         }
         #endregion
     }

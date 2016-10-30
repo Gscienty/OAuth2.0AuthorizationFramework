@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
 namespace OAuthService.Framework.Entities
@@ -8,6 +9,9 @@ namespace OAuthService.Framework.Entities
     public sealed class OAuthCodeEntity
     {
         #region Property
+        [BsonIdAttribute]
+        internal ObjectId ID { get; set; }
+
         [BsonElementAttribute("code")]
         public string Code { get; set; }
 

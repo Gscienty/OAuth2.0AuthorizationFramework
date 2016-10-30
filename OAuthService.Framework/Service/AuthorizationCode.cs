@@ -1,13 +1,12 @@
 using System;
 using System.Collections.Generic;
-using OAuthService.Framework;
 using OAuthService.Framework.Entities;
 using OAuthService.Framework.DataProvider;
 using OAuthService.Framework.Utilities;
 
 namespace OAuthService.Framework.Service
 {
-    internal class AuthorizationCode : IAuthorizationCode
+    public class AuthorizationCode : IAuthorizationCode
     {
         public OAuthErrorType VerifyClient(string clientID)
         {
@@ -20,7 +19,7 @@ namespace OAuthService.Framework.Service
         public OAuthErrorType VerifyScopes(IEnumerable<string> scopes)
         {
             IDictionary<string, ScopeEntity> legcalScopes = ScopeDataProvider.Instance.GetScopes();
-
+           
             foreach(string scope in scopes)
             {
                 if(legcalScopes.ContainsKey(scope) == false) { return OAuthErrorType.InvalidScope; }
@@ -30,7 +29,7 @@ namespace OAuthService.Framework.Service
 
         public IEnumerable<ScopeEntity> GetScopes(IEnumerable<string> scopes)
         {
-            IDictionary<string, ScopeEntity> legcalScopes = ScopeDataProvider.Instance.GetScopes();
+            Dictionary<string, ScopeEntity> legcalScopes = ScopeDataProvider.Instance.GetScopes();
             foreach(string scope in scopes)
             {
                 yield return legcalScopes[scope];
@@ -71,8 +70,5 @@ namespace OAuthService.Framework.Service
 
             return Tuple.Create(OAuthErrorType.NoError, accessToken);
         }
-
-        
-
     }
 }

@@ -1,5 +1,7 @@
 ﻿using System;
-using OAuthService.Framework.Utilities;
+using System.Collections.Generic;
+using OAuthService.Framework.Service;
+using OAuthService.Framework.DataProvider;
 
 namespace ConsoleApplication
 {
@@ -7,7 +9,15 @@ namespace ConsoleApplication
     {
         public static void Main(string[] args)
         {
-            Console.WriteLine(RandomGenerator.GeneratorRandomVSCode(256));
+            DataProviderConfiguration.Initialize("mongodb://localhost:27017", "OAuthService");
+
+            List<string> scopes = new List<string>();
+            scopes.Add("library");
+            scopes.Add("card");
+            AuthorizationCode service = new AuthorizationCode();
+            Console.WriteLine(
+                service.VerifyScopes(scopes)
+            );
         }
     }
 }
