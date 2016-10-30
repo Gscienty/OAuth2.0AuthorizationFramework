@@ -24,7 +24,10 @@ namespace OAuthService.Framework
         ///</summary>
         OAuthErrorType VerifyScopes(IEnumerable<string> scopes);
 
-        ICollection<ScopeEntity> GetScopes(IEnumerable<string> scopes);
+        ///<summary>
+        ///获取权限
+        ///</summary>
+        IEnumerable<ScopeEntity> GetScopes(IEnumerable<string> scopes);
 
         ///<summary>
         ///获取Access Token
@@ -33,6 +36,9 @@ namespace OAuthService.Framework
         ///</summary>
         string GetCode(string clientID, ICollection<string> scopes);
 
+        ///<summary>
+        ///获取Access Token
+        ///</summary>
         OAuthAccessToken GetAccessToken(string clientID, string code); 
     }
 }

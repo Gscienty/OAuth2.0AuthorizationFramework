@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using OAuthService.Framework;
 using OAuthService.Framework.Entities;
 using OAuthService.Framework.DataProvider;
+using OAuthService.Framework.Utilities;
 
 namespace OAuthService.Framework.Service
 {
@@ -22,7 +23,7 @@ namespace OAuthService.Framework.Service
 
             foreach(string scope in scopes)
             {
-                if(legcalScopeNames.Contains(scope) == false) { return OAuthErrorType.InvalidScope; }
+                if(legcalScopes.ContainsKey(scope) == false) { return OAuthErrorType.InvalidScope; }
             }
             return OAuthErrorType.NoError;
         }
@@ -37,6 +38,19 @@ namespace OAuthService.Framework.Service
         }
 
         public string GetCode(string clientID, ICollection<string> scopes)
+        {
+            OAuthCodeEntity entity = new OAuthCodeEntity()
+            {
+                Code = RandomGenerator.GeneratorRandomNQCode(32),
+                ClientID = clientID,
+                TimeoutTimestamp = (Int64)(DateTime.Now - new DateTime(1970, 1, 1, 0, 0, 0, 0).ToLocalTime()).Add(new TimeSpan(0, 10, 0)).TotalSeconds,
+                Scopes = scopes
+            };
+            AccessCodeDataProvider.Instance.Insert(entity);
+            return entity.Code;
+        }
+
+        public OAuthAccessToken GetAccessToken(string clientID, string code)
         {
 
         }
