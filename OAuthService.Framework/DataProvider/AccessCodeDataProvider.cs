@@ -27,11 +27,26 @@ namespace OAuthService.Framework.DataProvider
             this.GetCollection<OAuthCodeEntity>().InsertOne(entity);
         }
 
-        internal OAuthCodeEntity Get(string code)
+        internal OAuthCodeEntity Get(string code, string clientID)
         {
             return this.GetCollection<OAuthCodeEntity>().FindOneAndDelete(
                 Builders<OAuthCodeEntity>.Filter
-                    .Eq(entity => entity.Code, code)
+                    .And(
+                        Builders<OAuthCodeEntity>.Filter
+                            .Eq(entity => entity.Code, code),
+                        Builders<OAuthCodeEntity>.Filter
+                            .Eq(entity => entity.ClientID, clientID),
+                        Builders<OAuthCodeEntity>.Filter
+                            .Gt(entity => entity.TimeoutTimestamp, ConvertTimespan.Get(DateTime.Now))
+                    )
+            );
+        }
+
+        private void DeleteTimeoutEntities()
+        {
+            this.GetCollection<OAuthCodeEntity>().DeleteMany(
+                Builders<OAuthCodeEntity>.Filter
+                    .Lt(entity => entity.TimeoutTimestamp, ConvertTimespan.Get(DateTime.Now))
             );
         }
         #endregion

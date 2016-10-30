@@ -34,11 +34,11 @@ namespace OAuthService.Framework
         ///<param name="clientID">ClientID</param>
         ///<returns>Access Token</returns>
         ///</summary>
-        string GetCode(string clientID, ICollection<string> scopes);
+        Tuple<OAuthErrorType, string> GetCode(string clientID, ICollection<string> scopes);
 
         ///<summary>
         ///获取Access Token
         ///</summary>
-        OAuthAccessToken GetAccessToken(string clientID, string code); 
+        Tuple<OAuthErrorType, OAuthAccessToken> GetAccessToken(string clientID, string code); 
     }
 }

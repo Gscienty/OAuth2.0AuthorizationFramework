@@ -37,8 +37,10 @@ namespace OAuthService.Framework.Service
             }
         }
 
-        public string GetCode(string clientID, ICollection<string> scopes)
+        public Tuple<OAuthErrorType, string> GetCode(string clientID, ICollection<string> scopes)
         {
+            if(VerifyScopes(scopes) == OAuthErrorType.InvalidScope) { return Tuple.Create(OAuthErrorType.InvalidScope, String.Empty); }
+
             OAuthCodeEntity entity = new OAuthCodeEntity()
             {
                 Code = RandomGenerator.GeneratorRandomNQCode(32),
@@ -47,12 +49,13 @@ namespace OAuthService.Framework.Service
                 Scopes = scopes
             };
             AccessCodeDataProvider.Instance.Insert(entity);
-            return entity.Code;
+            return Tuple.Create(OAuthErrorType.NoError, entity.Code);
         }
 
-        public OAuthAccessToken GetAccessToken(string clientID, string code)
+        public Tuple<OAuthErrorType, OAuthAccessToken> GetAccessToken(string clientID, string code)
         {
-
+            OAuthCodeEntity codeEntity = AccessCodeDataProvider.Instance.Get(code, clientID);
+            if(codeEntity == null) { return Tuple.Create(OAuthErrorType.UnAuthorizedClient, new OAuthAccessToken()); }
         }
     }
 }
