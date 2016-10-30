@@ -3,10 +3,13 @@ using MongoDB.Bson.Serialization.Attributes;
 namespace OAuthService.Framework.Entities
 {
     [BsonDiscriminatorAttribute("scope")]
-    internal sealed class ScopeEntity
+    public sealed class ScopeEntity
     {
         [BsonElementAttribute("scope_name")]
-        internal string ScopeName { get; set; }
+        public string ScopeName { get; set; }
+
+        [BsonElementAttribute("scope_logicalname")]
+        public string ScopeLogicalName { get; set; }
 
         [BsonElementAttribute("scope_lock")]
         internal bool IsLock{ get; set; }

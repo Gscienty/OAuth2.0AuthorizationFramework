@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using OAuthService.Framework.Entities;
 using MongoDB.Driver;
-using OAuthService.Framework.Exceptions;
 
 namespace OAuthService.Framework.DataProvider
 {
@@ -22,20 +21,19 @@ namespace OAuthService.Framework.DataProvider
         #endregion
 
         #region Method
-        internal IEnumerable<string> GetScopes(IEnumerable<string> scopes)
+        internal IDictionary<string, ScopeEntity> GetScopes()
         {
-            foreach(string scope in scopes)
+            ICollection<ScopeEntity> collection = this.GetCollection<ScopeEntity>().FindSync(
+                Builders<ScopeEntity>.Filter
+                .Eq(entity => entity.IsLock, false)
+            ).ToList();
+            
+            Dictionary<string, ScopeEntity> result = new Dictionary<string, ScopeEntity>();
+            foreach(ScopeEntity item in collection)
             {
-                ScopeEntity legalScope = this.GetCollection<ScopeEntity>().FindSync(
-                                                Builders<ScopeEntity>.Filter
-                                                    .Eq(entity => entity.ScopeName, scope)).SingleOrDefault();
-                                                    
-                if(legalScope != null && legalScope.IsLock == false)
-                {
-                    yield return scope;
-                }
-                else { throw new InvalidScopeException(); }
+                result[item.ScopeName] = item;
             }
+            return result;
         }
         #endregion
     }

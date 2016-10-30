@@ -22,7 +22,9 @@ namespace OAuthService.Framework
         ///<param name="scopes">权限集合</param>
         ///<returns>权限是否合法</returns>
         ///</summary>
-        OAuthErrorType VerifyScopes(ICollection<string> scopes);
+        OAuthErrorType VerifyScopes(IEnumerable<string> scopes);
+
+        ICollection<ScopeEntity> GetScopes(IEnumerable<string> scopes);
 
         ///<summary>
         ///获取Access Token

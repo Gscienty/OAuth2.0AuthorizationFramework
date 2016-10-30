@@ -15,5 +15,30 @@ namespace OAuthService.Framework.Service
             else if(entity.IsEnable == false) { return OAuthErrorType.AccessDeniend; }
             return OAuthErrorType.NoError;
         }
+
+        public OAuthErrorType VerifyScopes(IEnumerable<string> scopes)
+        {
+            IDictionary<string, ScopeEntity> legcalScopes = ScopeDataProvider.Instance.GetScopes();
+
+            foreach(string scope in scopes)
+            {
+                if(legcalScopeNames.Contains(scope) == false) { return OAuthErrorType.InvalidScope; }
+            }
+            return OAuthErrorType.NoError;
+        }
+
+        public IEnumerable<ScopeEntity> GetScopes(IEnumerable<string> scopes)
+        {
+            IDictionary<string, ScopeEntity> legcalScopes = ScopeDataProvider.Instance.GetScopes();
+            foreach(string scope in scopes)
+            {
+                yield return legcalScopes[scope];
+            }
+        }
+
+        public string GetCode(string clientID, ICollection<string> scopes)
+        {
+
+        }
     }
 }
