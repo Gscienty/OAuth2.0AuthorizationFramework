@@ -9,11 +9,8 @@ namespace OAuthService.Framework
     {
         ///<summary>
         ///授权请求
-        ///<param name="scope">声明</param>
         ///<returns>令牌</returns>
         ///</summary>
-        OAuthTokenEntity AuthorizationRequest(
-            string scope
-        );
+        OAuthTokenEntity AuthorizationRequest();
     }
 }
