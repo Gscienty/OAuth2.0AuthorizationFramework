@@ -10,25 +10,18 @@ namespace OAuthService.Framework
     public interface IAuthorizationCode
     {
         ///<summary>
-        ///授权请求
-        ///<param name="clientID">客户端凭证</param>
-        ///<param name="state">声明</param>
-        ///<param name="scopes">授权范围</param>
-        ///<returns>返回授权码及声明</returns>
+        ///验证客户端合法性
+        ///<param name="clientID">ClientID</param>
+        ///<param name="scopes">客户端权限</param>
+        ///<returns>客户端是否合法，若不合法产生的是何种错误</returns>
         ///</summary>
-        string AuthorizationRequest(
-            string clientID,
-            IEnumerable<string> scopes
-        );
+        Tuple<bool, OAuthErrorEntity> VerifyClient(string clientID, IEnumerable<string> scopes);
 
         ///<summary>
-        ///获取令牌
-        ///<param name="clientID">客户端凭证</param>
-        ///<param name="code">授权码</param>
+        ///获取Access Token
+        ///<param name="clientID">ClientID</param>
+        ///<returns>Access Token</returns>
         ///</summary>
-        OAuthTokenEntity AccessTokenRequest(
-            string clientID,
-            string code
-        );
+        OAuthAccessToken GetAccessToken(string clientID);
     }
 }
