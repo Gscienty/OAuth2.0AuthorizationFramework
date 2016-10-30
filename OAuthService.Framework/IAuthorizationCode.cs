@@ -22,13 +22,15 @@ namespace OAuthService.Framework
         ///<param name="scopes">权限集合</param>
         ///<returns>权限是否合法</returns>
         ///</summary>
-        Tuple<bool, OAuthErrorEntity> VerifyScopes(ICollection<string> scopes);
+        OAuthErrorType VerifyScopes(ICollection<string> scopes);
 
         ///<summary>
         ///获取Access Token
         ///<param name="clientID">ClientID</param>
         ///<returns>Access Token</returns>
         ///</summary>
-        OAuthAccessToken GetAccessToken(string clientID);
+        string GetCode(string clientID, ICollection<string> scopes);
+
+        OAuthAccessToken GetAccessToken(string clientID, string code); 
     }
 }
